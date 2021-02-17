@@ -4,12 +4,18 @@
     box-sizing: border-box;
   }
 
+  body{
+    background-image: url("Img/bakgrund3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
 footer{
  position: fixed;
  bottom:0;
  width: 100%;
  text-align: center;
- 
 }
 
 header {
