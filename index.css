@@ -3,23 +3,21 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  html{
-    height: 100%;
-  }
   body{
     background-image: url("Img/bakgrund3.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     background-attachment: fixed;
     line-height: 1.6;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
 footer{
- position: fixed;
+  margin-top: auto;
+  grid-area: footer;
  padding: 1rem;
- bottom:0;
  display: flex;
  justify-content: space-evenly;
  align-items: center;
@@ -114,6 +112,52 @@ header h1{
     padding-left: 0.2cm;
 
   }
+
+  .bakgrund img{
+    min-height: 100%;
+    min-width: 1500px;
+    z-index: -1;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+  }
+
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .searchboxContainer{
+
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-left: 60px;
+    justify-content: center;
+  }
+  #inputValue{
+    width: 400px;
+    border: 3px solid rgb(87, 87, 87);
+    background:rgba(255, 255, 255, 0.493);
+    padding: 15px 30px;
+    border-radius: 50px;
+    outline: none;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    }
+    .btn{
+     width: 48px;
+     height: 48px;
+     margin-left: 0.2cm;
+     margin-top: 0.1cm;
+
+    }
+
+  
+
   
 
     @media screen and (min-width: 900px) {
