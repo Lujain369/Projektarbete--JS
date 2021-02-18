@@ -124,8 +124,28 @@ header h1{
     left: 0;
 
   }
+  
+  .Search_header{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .Search_header h2 {
+    display: flex;
+   justify-content: center;
+  
+  }
+  .Search_header p {
+    display: flex;
+    justify-content: center;
+  
+  }
+  #underH2{
 
-  main{
+    display: flex;
+    justify-content: center;
+  }
+  .Search{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,7 +154,7 @@ header h1{
 
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 60px;
     justify-content: center;
   }
