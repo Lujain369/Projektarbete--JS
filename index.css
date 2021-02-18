@@ -112,6 +112,11 @@ header h1{
     justify-content: center;
   
   }
+  #underH2{
+
+    display: flex;
+    justify-content: center;
+  }
   .Search{
     display: flex;
     flex-direction: column;
