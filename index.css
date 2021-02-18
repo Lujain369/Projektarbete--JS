@@ -21,7 +21,7 @@ footer{
  display: flex;
  justify-content: space-evenly;
  align-items: center;
- background-color: beige;
+ background-color: rgba(245, 245, 220, 0.712);
  width: 100%;
  flex-direction: column;
 }
@@ -36,6 +36,9 @@ p{
   align-items: center;
   flex-direction: column;
   gap:10%;
+}
+.socials h3{
+  font-family: 'Merienda';
 }
 
 .images{
@@ -131,17 +134,12 @@ header h1{
   
   }
   .Search_header h2 {
-    display: flex;
+   display: flex;
    justify-content: center;
    font-family: 'Merienda';
   
   }
-  .Search_header h5 {
-    display: flex;
-    justify-content: center;
-    font-family: 'Merienda';
   
-  }
 
   .Search{
     display: flex;
