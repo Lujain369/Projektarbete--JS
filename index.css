@@ -93,6 +93,10 @@ header h1{
     left: 0;
 
   }
+  main{
+  
+
+  }
   .Search_header{
     display: flex;
     flex-direction: column;
