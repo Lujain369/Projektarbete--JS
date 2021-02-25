@@ -23,36 +23,29 @@ async function search(){
         
         const jsonRespone = await respone.json();
         console.log(jsonRespone);
-        let titel=jsonRespone.results[8]['title']
 
-        
-             
+      for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
 
-    
-            
+      let titel = jsonRespone.results[foodObj]["title"];
 
-        
-      
-
-        let forstaDivForAllaRecept= document.createElement("div");
-        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
-
-        let receptTitel = document.createElement('h3');
-       
-        receptTitel.id="Titel";
-        receptTitel.innerHTML= titel;
      
+      let forstaDivForAllaRecept = document.createElement("div");
+      forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
 
+      let receptTitel = document.createElement("h3");
 
+      receptTitel.id = "Titel";
+      receptTitel.innerHTML = titel;
 
       Main.appendChild(forstaDivForAllaRecept);
       forstaDivForAllaRecept.appendChild(receptTitel);
-  
 
 
+      
 
-    }
-    else if(respone.error){
+
+     }
+   } else if(respone.error){
         alert("Failed");
     }
 }
