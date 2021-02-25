@@ -24,7 +24,7 @@
   margin:0;
   box-shadow: 0 0 5px black;
   padding:0.5rem 0;
-  background-color: beige;
+  background-color: rgb(255, 255, 255);
   color: black;
 }
 .items:hover{
@@ -35,7 +35,7 @@
     border-radius: 0 0 20px 20px;
     box-shadow: 0 2px 5px black;
     display: none;
-    background-color: rgb(255, 255, 228);
+    background-color: rgb(255, 255, 255);
   }
 
 footer{
@@ -44,11 +44,7 @@ footer{
  display: flex;
  justify-content: space-evenly;
  align-items: center;
-<<<<<<< HEAD
  background-color: rgba(255, 255, 255, 0.637);
-=======
- background-color: rgba(255, 240, 240, 0.637);
->>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
  width: 100%;
  flex-direction: column;
 }
@@ -70,11 +66,6 @@ article img{
   border-radius: 20px;
 }
 
-.theMain{
-  width: 75%;
-  background-color:rgba(255, 240, 240, 0.637);
-  margin: 2rem auto;
-}
 
 .socials{
   height: 100%;
@@ -113,6 +104,8 @@ footer div{
     list-style: none;
     margin:1rem;
   }
+
+
   #button{
 
     width: 50px;
@@ -121,16 +114,7 @@ footer div{
     margin-top: 5px;
   }
 
-  .button{
-    color:black;
-    background-color: rgba(255,255,255, 0.7);
-    padding:0.5rem 1rem;
-    box-shadow: 0 0 5px black;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 20px;
-  }
+  
 
   .brand{
     font-family: 'Merienda';
@@ -152,8 +136,6 @@ header h1{
   font-family: 'Merienda';
   font-size:60px;
   }
-
-      
 
 
   .Flower1{
@@ -191,21 +173,12 @@ header h1{
   .searchboxContainer{
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
-    margin-top: 10px;
-=======
-    margin: 1rem 10px;
->>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
     justify-content: center;
   }
   #inputValue{
     width: 400px;
     border: 3px solid rgb(41, 41, 41);
-<<<<<<< HEAD
     background:rgba(255, 255, 255, 0.637);
-=======
-    background:rgba(255, 240, 240, 0.637);
->>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
     padding: 15px 30px;
     border-radius: 50px;
     outline: none;
@@ -213,26 +186,22 @@ header h1{
     color: rgb(0, 0, 0);
     }
 
+    .theMain_forRecept{
+      display: flex;
+      justify-content: center;
+    }
+
     .forstaDivForAllaRecept{
      background-color: rgb(255, 255, 255);
-     width: 50%;
-     height: 50%;
-     position: fixed;
-     left: 25%;
-     z-index: 1;
+     width: 1000px;
+     height: 500px;
      display: flex;
      justify-content: center;
      margin-top: 50px;
+     margin-bottom: 50px;
     
     }
  
-
-    main{
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-
   
 
     @media screen and (min-width: 900px) {

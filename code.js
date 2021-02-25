@@ -1,7 +1,7 @@
 let url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba&query=';
 let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
-let Main=document.querySelector('.theMain')
+let Main=document.querySelector('.theMain_forRecept')
 
 button.onclick = function(){
     search()
@@ -16,7 +16,6 @@ function compileQuery(url, type, text){
 }
 
 async function search(){
-    let värdet= inputValue.value;
 
     let query = getQuery();
     let respone = await fetch(query);
@@ -27,8 +26,9 @@ async function search(){
         let forstaDivForAllaRecept= document.createElement("div");
         forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
 
-     
       Main.appendChild(forstaDivForAllaRecept);
+
+      
 
     }
     else if(respone.error){
