@@ -20,15 +20,36 @@ async function search(){
     let query = getQuery();
     let respone = await fetch(query);
     if(respone.ok){
+        
         const jsonRespone = await respone.json();
         console.log(jsonRespone);
+        let titel=jsonRespone.results[8]['title']
+
+        
+             
+
+    
+            
+
+        
+      
 
         let forstaDivForAllaRecept= document.createElement("div");
         forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
 
-      Main.appendChild(forstaDivForAllaRecept);
+        let receptTitel = document.createElement('h3');
+       
+        receptTitel.id="Titel";
+        receptTitel.innerHTML= titel;
+     
 
-      
+
+
+      Main.appendChild(forstaDivForAllaRecept);
+      forstaDivForAllaRecept.appendChild(receptTitel);
+  
+
+
 
     }
     else if(respone.error){
