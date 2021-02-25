@@ -47,11 +47,10 @@ async function search(){
 
 $(function(){
     $('.items').click(function(){
-        $("ul", this.parentElement).slideToggle(200, function(){
-            const value = $(this.parentElement.childNodes[1]).css("border-radius");
+        const value = $(this.parentElement.childNodes[1]).css("border-radius");
             if(value == "20px") $(this.parentElement.childNodes[1]).css("border-radius", "20px 20px 0px 0px");
             else $(this.parentElement.childNodes[1]).css("border-radius", "20px");
-        });
+        $("ul", this.parentElement).slideToggle(100);
     })
 })
 

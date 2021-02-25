@@ -25,6 +25,7 @@
   box-shadow: 0 0 5px black;
   padding:0.5rem 0;
   background-color: beige;
+  color: black;
 }
 .items:hover{
   box-shadow: 0 0 10px black;
