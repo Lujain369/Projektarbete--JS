@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="index.css">
-    <title> </title>
+    <title>Recipely - Recipes that tastes good and will impress </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -32,13 +32,43 @@
         <div class="searchboxContainer">
             <input type="text" id="inputValue" placeholder="Search for recipes">
             <input type="image" id="search" name="search" src="Img/icon2.png">
-           </div>     
         </div>
-</main>
-
-<div class="theMain">
+        <div class="row justify-content-center mt-5 text-center">
+            <div class="col-3">
+                <p class="items rounder">Intolerance</p>
+                <ul>
+                    
+                    <li><label for="gluten">Gluten</label><input type="checkbox" name="gluten"></li>
+                    <li><label for="Lactose">Lactose</label><input type="checkbox" name="Lactose"></li>
+                    <li><label for="Diary">Diary</label><input type="checkbox" name="Diary"></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <p class="items rounder">Meal</p>
+                <ul>
+                    <li><label for="gluten">Dinner</label><input type="checkbox" name="gluten"></li>
+                    <li><label for="Lactose">Breakfast</label><input type="checkbox" name="Lactose"></li>
+                    <li><label for="Diary">Dessert</label><input type="checkbox" name="Diary"></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <p class="items rounder">Intolerance</p>
+                <ul>
+                    <label for="gluten">Gluten</label>
+                    <li><input type="checkbox" name="gluten"></li>
+                    <label for="Lactose">Lactose</label>
+                    <li><input type="checkbox" name="Lactose"></li>
+                    <label for="Diary">Diary</label>
+                    <li><input type="checkbox" name="Diary"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        
+<div class="theMain rounder">
     
 </div>
+</main>
 
 
 
@@ -61,5 +91,6 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="code.js"></script>
 </html>
