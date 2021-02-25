@@ -12,23 +12,68 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    justify-content: space-between;
+    overflow-x: hidden;
+  }
+
+
+.items{
+  font-weight: 800;
+  font-family: Merienda;
+  transition: ease-in-out 0.1s;
+  margin:0;
+  box-shadow: 0 0 5px black;
+  padding:0.5rem 0;
+  background-color: beige;
+  color: black;
+}
+.items:hover{
+  box-shadow: 0 0 10px black;
+}
+
+  ul{
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px black;
+    display: none;
+    background-color: rgb(255, 255, 228);
   }
 
 footer{
-position: fixed;
-bottom: 0;
- grid-area: footer;
+ bottom: 0;
  padding: 1rem;
  display: flex;
  justify-content: space-evenly;
  align-items: center;
+<<<<<<< HEAD
  background-color: rgba(255, 255, 255, 0.637);
+=======
+ background-color: rgba(255, 240, 240, 0.637);
+>>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
  width: 100%;
  flex-direction: column;
 }
 
 p{
-  color:rgb(90, 90, 90);
+  color:rgb(70, 70, 70);
+}
+
+article{
+  padding: 2rem;
+}
+
+article img{
+  max-width:20%;
+  max-height: auto;
+}
+
+.rounder{
+  border-radius: 20px;
+}
+
+.theMain{
+  width: 75%;
+  background-color:rgba(255, 240, 240, 0.637);
+  margin: 2rem auto;
 }
 
 .socials{
@@ -126,18 +171,6 @@ header h1{
 
   }
 
-  .bakgrund img{
-    min-height: 100%;
-    min-width: 1500px;
-    z-index: -1;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-  }
-
   .Search_header{
     display: flex;
     flex-direction: column;
@@ -150,23 +183,29 @@ header h1{
   
   }
   
-
   .Search{
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
   .searchboxContainer{
-
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
     margin-top: 10px;
+=======
+    margin: 1rem 10px;
+>>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
     justify-content: center;
   }
   #inputValue{
     width: 400px;
     border: 3px solid rgb(41, 41, 41);
+<<<<<<< HEAD
     background:rgba(255, 255, 255, 0.637);
+=======
+    background:rgba(255, 240, 240, 0.637);
+>>>>>>> 7d1db6641d8b5d02be1310a9223f8c961678ba28
     padding: 15px 30px;
     border-radius: 50px;
     outline: none;
