@@ -1,5 +1,5 @@
 let url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba&query=';
-let button= document.querySelector('#search')
+let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain')
 
@@ -24,20 +24,11 @@ async function search(){
         const jsonRespone = await respone.json();
         console.log(jsonRespone);
 
-        let förstaDivFörAllaRecept= document.createElement("div");
-        förstaDivFörAllaRecept.className = "förstaDivFörAllaRecept";
+        let forstaDivForAllaRecept= document.createElement("div");
+        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
 
-
-      let allaRecept= document.createElement("div");
-      allaRecept.className = "allaRecept";
-
-      let rubrikFörInput = document.createElement("h1");
-      rubrikFörInput.id = "rubrikFörInput";
-      rubrikFörInput.innerHTML = "'"+värdet+"'";
-
-      allaRecept.appendChild(rubrikFörInput);
-      förstaDivFörAllaRecept.appendChild(allaRecept);
-      Main.appendChild(förstaDivFörAllaRecept);
+     
+      Main.appendChild(forstaDivForAllaRecept);
 
     }
     else if(respone.error){
