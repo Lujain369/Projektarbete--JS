@@ -27,28 +27,37 @@ async function search(){
       for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
 
       let titel = jsonRespone.results[foodObj]["title"];
+      let img=jsonRespone.results[foodObj]["image"];
 
      
       let forstaDivForAllaRecept = document.createElement("div");
       forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
 
       let receptTitel = document.createElement("h3");
+      let receptImg= document.createElement("img");
+      let showMore= document.createElement("button");
+      
 
       receptTitel.id = "Titel";
       receptTitel.innerHTML = titel;
+      receptImg.setAttribute("src", img);
+      showMore.id="showMore_btn"
+      showMore.innerHTML="Show ingredients for this recipe"
 
       Main.appendChild(forstaDivForAllaRecept);
       forstaDivForAllaRecept.appendChild(receptTitel);
-
-
-      
-
+      forstaDivForAllaRecept.appendChild(receptImg);
+      forstaDivForAllaRecept.appendChild(showMore);
+    
 
      }
    } else if(respone.error){
         alert("Failed");
     }
 }
+
+
+
 
 $(function(){
     $('.items').click(function(){
