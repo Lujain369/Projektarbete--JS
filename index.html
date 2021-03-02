@@ -37,7 +37,7 @@
         <div class="row justify-content-center mt-5 text-center">
             <div class="col-3">
                 <p class="items rounder">Intolerance</p>
-                <ul>
+                <ul class="filterList">
                     
                     <li><label for="gluten">Gluten</label><input type="checkbox" name="gluten"></li>
                     <li><label for="Lactose">Lactose</label><input type="checkbox" name="Lactose"></li>
@@ -46,21 +46,44 @@
             </div>
             <div class="col-3">
                 <p class="items rounder">Meal</p>
-                <ul>
+                <ul class="filterList">
                     <li><label for="gluten">Dinner</label><input type="checkbox" name="gluten"></li>
                     <li><label for="Lactose">Breakfast</label><input type="checkbox" name="Lactose"></li>
                     <li><label for="Diary">Dessert</label><input type="checkbox" name="Diary"></li>
                 </ul>
             </div>
             <div class="col-3">
-                <p class="items rounder">Intolerance</p>
-                <ul>
-                    <label for="gluten">Gluten</label>
-                    <li><input type="checkbox" name="gluten"></li>
-                    <label for="Lactose">Lactose</label>
-                    <li><input type="checkbox" name="Lactose"></li>
-                    <label for="Diary">Diary</label>
-                    <li><input type="checkbox" name="Diary"></li>
+                <p class="items rounder">Diet</p>
+                <ul class="filterList">
+                    <li>
+                        <label for="GlutenFree">Gluten Free</label>
+                        <input type="checkbox" id="GlutenFree" value="Gluten Free">
+                    </li>
+                    
+                    <li>
+                        <label for="Vegetarian">Vegetarian</label>
+                        <input type="checkbox" id="Vegetarian" value="Vegetarian">
+                    </li>
+                    
+                    <li>
+                        <label for="Vegan">Vegan</label>
+                        <input type="checkbox" id="Vegan" value="Vegan">
+                    </li>
+
+                    <li>
+                        <label for="Paleo">Paleo</label>
+                        <input type="checkbox" id="Paleo" value="Paleo">
+                    </li>
+
+                    <li>
+                        <label for="Pescetarian">Pescetarian</label>
+                        <input type="checkbox" id="Pescetarian" value="Pescetarian">
+                    </li>
+
+                    <li>
+                        <label for="Ketogenic">Ketogenic</label>
+                        <input type="checkbox" id="Ketogenic" value="Ketogenic">
+                    </li>
                 </ul>
             </div>
         </div>

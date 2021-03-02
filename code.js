@@ -8,7 +8,11 @@ button.onclick = function(){
 }
 
 function getQuery(){
+    if(inputValue.value.length > 0)
     return url + inputValue.value;
+    else{
+        alert("Must search for something");
+    }
 }
 
 function compileQuery(url, type, text){
@@ -18,42 +22,51 @@ function compileQuery(url, type, text){
 async function search(){
 
     let query = getQuery();
-    let respone = await fetch(query);
-    if(respone.ok){
-        
-        const jsonRespone = await respone.json();
-        console.log(jsonRespone);
-
-      for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
-
-      let titel = jsonRespone.results[foodObj]["title"];
-      let img=jsonRespone.results[foodObj]["image"];
-
-     
-      let forstaDivForAllaRecept = document.createElement("div");
-      forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
-
-      let receptTitel = document.createElement("h3");
-      let receptImg= document.createElement("img");
-      let showMore= document.createElement("button");
-      
-
-      receptTitel.id = "Titel";
-      receptTitel.innerHTML = titel;
-      receptImg.setAttribute("src", img);
-      showMore.id="showMore_btn"
-      showMore.innerHTML="Show ingredients for this recipe"
-
-      Main.appendChild(forstaDivForAllaRecept);
-      forstaDivForAllaRecept.appendChild(receptTitel);
-      forstaDivForAllaRecept.appendChild(receptImg);
-      forstaDivForAllaRecept.appendChild(showMore);
-    
-
-     }
-   } else if(respone.error){
-        alert("Failed");
+    let response;
+    try{
+        response = await fetch(query);
     }
+    catch{
+        alert("something went wrong");
+    }
+    
+    if(response.ok){
+            const jsonRespone = await response.json();
+            console.log(jsonRespone.results.length);
+
+        if(jsonRespone.results.length > 0){
+            for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
+
+                let titel = jsonRespone.results[foodObj]["title"];
+                let img=jsonRespone.results[foodObj]["image"];
+          
+               
+                let forstaDivForAllaRecept = document.createElement("div");
+                forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
+          
+                let receptTitel = document.createElement("h3");
+                let receptImg= document.createElement("img");
+                let showMore= document.createElement("button");
+                
+          
+                receptTitel.id = "Titel";
+                receptTitel.innerHTML = titel;
+                receptImg.setAttribute("src", img);
+                showMore.id="showMore_btn"
+                showMore.innerHTML="Show ingredients for this recipe"
+          
+                Main.appendChild(forstaDivForAllaRecept);
+                forstaDivForAllaRecept.appendChild(receptTitel);
+                forstaDivForAllaRecept.appendChild(receptImg);
+                forstaDivForAllaRecept.appendChild(showMore);
+              
+          
+               }
+             }
+             else{
+                 alert("We couldn't find " + inputValue.value + " in our database");
+             }
+        }
 }
 
 

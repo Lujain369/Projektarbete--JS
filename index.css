@@ -105,6 +105,22 @@ footer div{
     margin:1rem;
   }
 
+  .filterList{
+    padding: 0 !important;
+  }
+
+
+  .filterList li input{
+    display: block;
+    margin: auto;
+  }
+
+  .filterList li{
+    padding: .5rem;
+    margin:0 !important;
+    display: block;
+  }
+
 
   #button{
 
@@ -193,17 +209,15 @@ header h1{
     .theMain_forRecept{
       display: flex;
       flex-direction: column;
-      overflow: auto;
+      margin:auto;
       margin-top: 50px;
-      margin-left: 25%;
       padding-left: 0.5cm;
       padding-top: 0.5cm;
       padding-bottom: 0.5cm;
       padding-right: 0.5cm;
       margin-bottom: 50px;
       background-color: rgb(255, 255, 255);
-      width: 1000px;
-      height: 500px;
+      width:80%;
 
     }
 
@@ -241,5 +255,8 @@ header h1{
     @media screen and (min-width: 900px) {
       footer{
         flex-direction: row;
+      }
+      .filterList li input{
+        display: inline-block;
       }
     }
