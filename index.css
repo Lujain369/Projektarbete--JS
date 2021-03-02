@@ -259,4 +259,8 @@ header h1{
       .filterList li input{
         display: inline-block;
       }
+
+      .filterList li{
+        display: inline-block;
+      }
     }
