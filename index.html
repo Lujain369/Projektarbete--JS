@@ -37,7 +37,7 @@
         <div class="row justify-content-center mt-5 text-center">
             <div class="col-3">
                 <p class="items rounder">Intolerance</p>
-                <ul class="filterList">
+                <ul class="filterList" id=Intolerance>
                     <li>
                         <label for="Diary">Diary</label>
                         <input type="checkbox" id="Diary" value="Diary">
@@ -54,7 +54,7 @@
                     </li>
 
                     <li>
-                        <label for="Grain">Diary</label>
+                        <label for="Grain">Grain</label>
                         <input type="checkbox" id="Grain" value="Grain">
                     </li>
 
@@ -106,24 +106,7 @@
             </div>
             <div class="col-3">
                 <p class="items rounder">Meal</p>
-                <ul class="filterList">
-
-                    <!--
-                        main course
-                        side dish
-                        dessert
-                        appetizer
-                        salad
-                        bread
-                        breakfast
-                        soup
-                        beverage
-                        sauce
-                        marinade
-                        fingerfood
-                        snack
-                        drink
-                    -->
+                <ul class="filterList" id="Meal">
 
                     <li>
                         <label for="MainCourse">Main Course</label>
@@ -198,15 +181,15 @@
             </div>
             <div class="col-3">
                 <p class="items rounder">Diet</p>
-                <ul class="filterList">
+                <ul class="filterList" id="Diet">
                     <li>
                         <label for="GlutenFree">Gluten Free</label>
-                        <input type="checkbox" id="GlutenFree" value="Gluten Free">
+                        <input type="checkbox" name="diet" id="GlutenFree" value="gluten free">
                     </li>
                     
                     <li>
                         <label for="Vegetarian">Vegetarian</label>
-                        <input type="checkbox" id="Vegetarian" value="Vegetarian">
+                        <input type="checkbox" name="diet" id="Vegetarian" value="vegetarian">
                     </li>
                     
                     <li>
@@ -252,7 +235,6 @@
             <a><img src="Img/facebook.png" alt="Facebook"></a>
             <a><img src="Img/instagram.png" alt="Instagram"></a>
         </div>
-
     </div>
 </footer>
 
