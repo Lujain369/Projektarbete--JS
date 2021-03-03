@@ -92,7 +92,7 @@ $(function(){
 
     $('#Intolerance').on('click', 'input', function(){
         if(!this.checked){
-            const index = diets.indexOf(this.value);
+            const index = intolerances.indexOf(this.value);
             intolerances.splice(index, 1);
         }
         else intolerances.push(this.value);
