@@ -118,5 +118,4 @@ $(function(){
     })
 })
 
-
-
+//Add random search when entering page

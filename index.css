@@ -18,17 +18,32 @@
 
 
 .items{
+  position: relative;
   font-weight: 800;
   font-family: Merienda;
-  transition: ease-in-out 0.1s;
   margin:0;
-  box-shadow: 0 0 5px black;
   padding:0.5rem 0;
   background-color: rgb(255, 255, 255);
   color: black;
+  box-shadow: 0 0 0.3em #444;
 }
-.items:hover{
-  box-shadow: 0 0 10px black;
+
+/*Pre renders hover shadow to increase performance*/
+.items::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 5px black;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.items:hover::after{
+  opacity: 1;
 }
 
   ul{
@@ -102,7 +117,7 @@ footer div{
   li{
     display:inline-block;
     list-style: none;
-    margin:1rem;
+    margin:1em;
   }
 
   .filterList{
@@ -116,7 +131,7 @@ footer div{
   }
 
   .filterList li{
-    padding: .5rem;
+    padding: .5em;
     margin:0 !important;
     display: block;
   }
@@ -140,8 +155,8 @@ footer div{
     font-family: 'Merienda';
     line-height: 1;
     text-shadow: 0 0 5px white;
-    font-size: 40px;
-    padding:1rem;
+    font-size: 3em;
+    padding:.5em;
     text-align: center;
   }
 
