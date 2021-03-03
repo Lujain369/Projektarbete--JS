@@ -3,8 +3,8 @@ let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
 let intolerances = [];
-    let diets = [];
-    let meals = [];
+let diet = "";
+let meal = "";
 
 button.onclick = function(){
     search()
@@ -24,11 +24,14 @@ async function search(){
 
     let query = getQuery();
     
+    //Adds a csv to url
     if(intolerances.length > 0) query = compileQuery(query, "intolerances", intolerances.toString());
 
-    if(diets.length > 0) query = compileQuery(query, "diet", diets.toString());
+    if(diet != "") query = compileQuery(query, "diet", diet);
     
-    if(meals.length > 0) query = compileQuery(query, "type", meals.toString());
+    if(meal != "") query = compileQuery(query, "type", meal);
+
+    console.log(query);
 
     let response;
     try{
@@ -77,7 +80,6 @@ async function search(){
         }
 }
 
-
 $(function(){
 
 
@@ -88,14 +90,6 @@ $(function(){
         $("ul", this.parentElement).slideToggle(100);
     })
 
-    $('#Diet').on('click', 'input', function(){
-        if(!this.checked){
-            const index = diets.indexOf(this.value);
-            diets.splice(index, 1);
-        }
-        else diets.push(this.value);
-    })
-
     $('#Intolerance').on('click', 'input', function(){
         if(!this.checked){
             const index = diets.indexOf(this.value);
@@ -104,13 +98,20 @@ $(function(){
         else intolerances.push(this.value);
     })
 
-    $('#Meal').on('click', 'input', function(){
-        if(!this.checked){
-            const index = diets.indexOf(this.value);
-            meals.splice(index, 1);
+    $("input:checkbox").on('click', function() {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            if(this.name == "diet") diet = this.value;
+            if(this.name == "meal") meal = this.value;
+          var group = "input:checkbox[name='" + $box.attr("name") + "']";
+          $(group).prop("checked", false);
+          $box.prop("checked", true);
+        } else {
+          $box.prop("checked", false);
+          if(this.name == "diet") diet = "";
+          if(this.name == "meal") meal = "";
         }
-        else meals.push(this.value);
-    })
+      });
 })
 
-//Add random search when entering page
+//todo Add random search when entering page
