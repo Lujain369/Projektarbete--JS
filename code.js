@@ -31,11 +31,12 @@ async function search(){
     
     if(meal != "") query = compileQuery(query, "type", meal);
 
-    console.log(query);
+    let cookieResult = getCookie(query);
 
     let response;
     try{
-        response = await fetch(query);
+        if(cookieResult == "")  response = await fetch(query);
+        else response = cookieResult;
     }
     catch{
         alert("something went wrong");
@@ -43,42 +44,74 @@ async function search(){
     
     if(response.ok){
             const jsonRespone = await response.json();
-            console.log(jsonRespone.results.length);
+            createCookie(query, jsonRespone);
             Main.innerHTML = "";
 
         if(jsonRespone.results.length > 0){
-            for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
-
-                let titel = jsonRespone.results[foodObj]["title"];
-                let img=jsonRespone.results[foodObj]["image"];
-          
-               
-                let forstaDivForAllaRecept = document.createElement("div");
-                forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
-          
-                let receptTitel = document.createElement("h3");
-                let receptImg= document.createElement("img");
-                let showMore= document.createElement("button");
-                
-          
-                receptTitel.id = "Titel";
-                receptTitel.innerHTML = titel;
-                receptImg.setAttribute("src", img);
-                showMore.id="showMore_btn"
-                showMore.innerHTML="Show ingredients for this recipe"
-          
-                Main.appendChild(forstaDivForAllaRecept);
-                forstaDivForAllaRecept.appendChild(receptTitel);
-                forstaDivForAllaRecept.appendChild(receptImg);
-                forstaDivForAllaRecept.appendChild(showMore);
-          
-               }
+            addResults(jsonRespone);
              }
              else{
                  alert("We couldn't find " + inputValue.value + " in our database");
              }
         }
+    else if(response != ""){
+        const jsonRespone = JSON.parse(response);
+        Main.innerHTML = "";
+        addResults(jsonRespone);
+    }
 }
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+function createCookie(url, list){
+    document.cookie = `${url}=${JSON.stringify(list)}`;
+    console.log(document.cookie);
+}
+
+
+function addResults(jsonRespone){
+    for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
+
+        let titel = jsonRespone.results[foodObj]["title"];
+        let img=jsonRespone.results[foodObj]["image"];
+  
+       
+        let forstaDivForAllaRecept = document.createElement("div");
+        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
+  
+        let receptTitel = document.createElement("h3");
+        let receptImg= document.createElement("img");
+        let showMore= document.createElement("button");
+        
+  
+        receptTitel.id = "Titel";
+        receptTitel.innerHTML = titel;
+        receptImg.setAttribute("src", img);
+        showMore.id="showMore_btn"
+        showMore.innerHTML="Show ingredients for this recipe"
+  
+        Main.appendChild(forstaDivForAllaRecept);
+        forstaDivForAllaRecept.appendChild(receptTitel);
+        forstaDivForAllaRecept.appendChild(receptImg);
+        forstaDivForAllaRecept.appendChild(showMore);
+  
+       }
+}
+
 
 $(function(){
 
