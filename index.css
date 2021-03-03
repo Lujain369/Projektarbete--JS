@@ -1,8 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0 ;
+    padding: 0 ;
     box-sizing: border-box;
   }
+
+  
   body{
     background-image: url("Img/bakgrund3.jpg");
     background-repeat: no-repeat;
@@ -14,135 +16,6 @@
     min-height: 100vh;
     justify-content: space-between;
     overflow-x: hidden;
-  }
-
-
-.items{
-  position: relative;
-  font-weight: 800;
-  font-family: Merienda;
-  margin:0;
-  padding:0.5rem 0;
-  background-color: rgb(255, 255, 255);
-  color: black;
-  box-shadow: 0 0 0.3em #444;
-}
-
-/*Pre renders hover shadow to increase performance*/
-.items::after{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 20px;
-  box-shadow: 0 0 5px black;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.items:hover::after{
-  opacity: 1;
-}
-
-  ul{
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 2px 5px black;
-    display: none;
-    background-color: rgb(255, 255, 255);
-  }
-
-footer{
- bottom: 0;
- padding: 1rem;
- display: flex;
- justify-content: space-evenly;
- align-items: center;
- background-color: rgba(255, 255, 255, 0.637);
- width: 100%;
- flex-direction: column;
-}
-
-p{
-  color:rgb(70, 70, 70);
-}
-
-article{
-  padding: 2rem;
-}
-
-article img{
-  max-width:20%;
-  max-height: auto;
-}
-
-.rounder{
-  border-radius: 20px;
-}
-
-
-.socials{
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap:10%;
-}
-.socials h3{
-  font-family: 'Merienda';
-}
-
-.images{
-  display: flex;
-  justify-content: space-evenly;
-
-  width: 100%;
-}
-
-.images img{
-  width: 40px;
-  
-  height: 40px;
-}
-
-footer div{
- max-width: 35ch;
-}
-
-  ul{
-    padding: 0 !important;
-    text-align: center;
-  }
-  li{
-    display:inline-block;
-    list-style: none;
-    margin:1em;
-  }
-
-  .filterList{
-    padding: 0 !important;
-  }
-
-
-  .filterList li input{
-    display: block;
-    margin: auto;
-  }
-
-  .filterList li{
-    padding: .5em;
-    margin:0 !important;
-    display: block;
-  }
-
-
-  #button{
-
-    width: 50px;
-    height: 50px;
-    display: flex;
-    margin-top: 5px;
   }
 
   main{
@@ -160,39 +33,44 @@ footer div{
     text-align: center;
   }
 
-header{
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+p{
+  color:rgb(70, 70, 70);
 }
 
-header h1{
-  font-family: 'Merienda';
-  font-size:60px;
-  }
+.rounder{
+  border-radius: 20px;
+}
 
 
-  .Flower1{
-    width: 64px;
-    height: 64px;
-    padding-top: 0.2cm; 
-    padding-left: 0.2cm;
-    transform: scaleX(-1);
-  }
-  .Flower2{
-    width: 64px;
-    height: 64px;
-    padding-top: 0.2cm;
-    padding-left: 0.2cm;
+  /*--------------------------------------------------------*/
 
+
+  /*  Header  */
+  header{
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+  header h1{
+    font-family: 'Merienda';
+    font-size:60px;
+  }
+  /*  /Header  */
+
+
+  /*--------------------------------------------------------*/
+
+
+  /*  Search area */
 
   .Search_header{
     display: flex;
     flex-direction: column;
   
   }
+
   .Search_header h2 {
    display: flex;
    justify-content: center;
@@ -205,11 +83,14 @@ header h1{
     flex-direction: column;
     justify-content: center;
   }
+
   .searchboxContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: auto;
   }
+
   #inputValue{
     width: 400px;
     border: 3px solid rgb(41, 41, 41);
@@ -219,53 +100,170 @@ header h1{
     outline: none;
     font-size: 18px;
     color: rgb(0, 0, 0);
-    }
+  }
 
-    .theMain_forRecept{
-      display: flex;
-      flex-direction: column;
-      margin:auto;
-      margin-top: 50px;
-      padding-left: 0.5cm;
-      padding-top: 0.5cm;
-      padding-bottom: 0.5cm;
-      padding-right: 0.5cm;
-      margin-bottom: 50px;
-      background-color: rgb(255, 255, 255);
-      width:80%;
+  #button{
 
-    }
+    width: 50px;
+    height: 50px;
+    display: flex;
+    margin-top: 5px;
+  }
 
-    .forstaDivForAllaRecept{
-     background-color: rgb(255, 255, 255);
-     width: 100%;
-     height: 300px;
-     display: flex;  
-     flex-direction: column;
-     margin-bottom: 0.5cm;
+  .items{
+    position: relative;
+    font-weight: 800;
+    font-family: Merienda;
+    margin:0;
+    padding:0.5rem 0;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    box-shadow: 0 0 0.3em #444;
+  }
+
+  .filterList{
+    padding: 0 !important;
+  }
+
+  ul{
+    padding: 0 !important;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px black;
+    display: none;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .filterList li input{
+    display: block;
+    margin: auto;
+  }
+
+  .filterList li{
+    padding: .5em;
+    margin:0 !important;
+    display: block;
+  }
+
+    /*Pre renders hover shadow to increase performance*/
+  .items::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 5px black;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .items:hover::after{
+    opacity: 1;
+  }
+
+  /* /Search area */
+
+
+  /*--------------------------------------------------------*/
+
+
+  /* Search results  */
+
+  .theMain_forRecept{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    margin-top: 50px;
+    padding-left: 0.5cm;
+    padding-top: 0.5cm;
+    padding-bottom: 0.5cm;
+    padding-right: 0.5cm;
+    margin-bottom: 50px;
+    background-color: rgb(255, 255, 255);
+    width:80%;
+
+  }
+
+  .forstaDivForAllaRecept{
+   background-color: rgb(255, 255, 255);
+   width: 100%;
+   height: 300px;
+   display: flex;  
+   flex-direction: column;
+   margin-bottom: 0.5cm;
+
+  }
+  #Titel{
+    font-family: 'Merienda';
+    
+  }
+  .forstaDivForAllaRecept img{
+    width: 304px;
+    height: 228px;
+    float: left;
+
+  }
+  #showMore_btn{
+    border:grey 2px solid;
+    width: 8cm;
+    margin-left: 16cm;
+    margin-bottom: 1cm;
+    background-color: white;
+  }
+
+  /*  / Search results  */
+
   
-    }
-    #Titel{
-      font-family: 'Merienda';
-      
-    }
-    .forstaDivForAllaRecept img{
-      width: 304px;
-      height: 228px;
-      float: left;
+  /*--------------------------------------------------------*/
 
-    }
-    #showMore_btn{
-      border:grey 2px solid;
-      width: 8cm;
-      margin-left: 16cm;
-      margin-bottom: 1cm;
-      background-color: white;
-      
-
-    }
- 
   
+  /*  Footer  */
+
+  footer{
+    bottom: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.637);
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .socials{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:10%;
+  }
+  .socials h3{
+    font-family: 'Merienda';
+  }
+
+  .images{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+  }
+
+  .images img{
+    width: 40px;
+    
+    height: 40px;
+  }
+
+  footer div{
+  max-width: 35ch;
+  }
+
+  /*  /Footer */
+
+
+  /*--------------------------------------------------------*/
 
     @media screen and (min-width: 900px) {
       footer{

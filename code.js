@@ -30,8 +30,6 @@ async function search(){
     
     if(meals.length > 0) query = compileQuery(query, "type", meals.toString());
 
-    console.log(query)
-
     let response;
     try{
         response = await fetch(query);
@@ -70,7 +68,6 @@ async function search(){
                 forstaDivForAllaRecept.appendChild(receptTitel);
                 forstaDivForAllaRecept.appendChild(receptImg);
                 forstaDivForAllaRecept.appendChild(showMore);
-              
           
                }
              }
@@ -79,8 +76,6 @@ async function search(){
              }
         }
 }
-
-
 
 
 $(function(){
