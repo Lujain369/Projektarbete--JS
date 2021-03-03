@@ -5,8 +5,8 @@ let Main=document.querySelector('.theMain_forRecept');
 let Main2=document.querySelector('.theMain_forRecept2');
 
 let intolerances = [];
-    let diets = [];
-    let meals = [];
+let diet = "";
+let meal = "";
 
 button.onclick = function(){
     search()
@@ -28,15 +28,19 @@ async function search(){
 
     let query = getQuery();
     
+    //Adds a csv to url
     if(intolerances.length > 0) query = compileQuery(query, "intolerances", intolerances.toString());
 
-    if(diets.length > 0) query = compileQuery(query, "diet", diets.toString());
+    if(diet != "") query = compileQuery(query, "diet", diet);
     
-    if(meals.length > 0) query = compileQuery(query, "type", meals.toString());
+    if(meal != "") query = compileQuery(query, "type", meal);
+
+    let cookieResult = getCookie(query);
 
     let response;
     try{
-        response = await fetch(query);
+        if(cookieResult == "")  response = await fetch(query);
+        else response = cookieResult;
     }
     catch{
         alert("something went wrong");
@@ -46,7 +50,11 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
+<<<<<<< HEAD
             console.log(jsonRespone);
+=======
+            createCookie(query, jsonRespone);
+>>>>>>> 8dcd65c697727a699455f6316700791848fbcfa7
             Main.innerHTML = "";
 
             function getAllID(){
@@ -63,37 +71,68 @@ async function search(){
         
 
         if(jsonRespone.results.length > 0){
-            for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
-
-                let titel = jsonRespone.results[foodObj]["title"];
-                let img=jsonRespone.results[foodObj]["image"];
-          
-               
-                let forstaDivForAllaRecept = document.createElement("div");
-                forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
-          
-                let receptTitel = document.createElement("h3");
-                let receptImg= document.createElement("img");
-                let showMore= document.createElement("button");
-                
-          
-                receptTitel.id = "Titel";
-                receptTitel.innerHTML = titel;
-                receptImg.setAttribute("src", img);
-                showMore.id="showMore_btn"
-                showMore.innerHTML="Show ingredients for this recipe"
-          
-                Main.appendChild(forstaDivForAllaRecept);
-                forstaDivForAllaRecept.appendChild(receptTitel);
-                forstaDivForAllaRecept.appendChild(receptImg);
-                forstaDivForAllaRecept.appendChild(showMore);
-          
-               }
+            addResults(jsonRespone);
              }
              else{
                  alert("We couldn't find " + inputValue.value + " in our database");
              }
         }
+    else if(response != ""){
+        const jsonRespone = JSON.parse(response);
+        Main.innerHTML = "";
+        addResults(jsonRespone);
+    }
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+function createCookie(url, list){
+    document.cookie = `${url}=${JSON.stringify(list)}`;
+    console.log(document.cookie);
+}
+
+
+function addResults(jsonRespone){
+    for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
+
+        let titel = jsonRespone.results[foodObj]["title"];
+        let img=jsonRespone.results[foodObj]["image"];
+  
+       
+        let forstaDivForAllaRecept = document.createElement("div");
+        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
+  
+        let receptTitel = document.createElement("h3");
+        let receptImg= document.createElement("img");
+        let showMore= document.createElement("button");
+        
+  
+        receptTitel.id = "Titel";
+        receptTitel.innerHTML = titel;
+        receptImg.setAttribute("src", img);
+        showMore.id="showMore_btn"
+        showMore.innerHTML="Show ingredients for this recipe"
+  
+        Main.appendChild(forstaDivForAllaRecept);
+        forstaDivForAllaRecept.appendChild(receptTitel);
+        forstaDivForAllaRecept.appendChild(receptImg);
+        forstaDivForAllaRecept.appendChild(showMore);
+  
+       }
 }
 
 
@@ -157,29 +196,28 @@ $(function(){
         $("ul", this.parentElement).slideToggle(100);
     })
 
-    $('#Diet').on('click', 'input', function(){
-        if(!this.checked){
-            const index = diets.indexOf(this.value);
-            diets.splice(index, 1);
-        }
-        else diets.push(this.value);
-    })
-
     $('#Intolerance').on('click', 'input', function(){
         if(!this.checked){
-            const index = diets.indexOf(this.value);
+            const index = intolerances.indexOf(this.value);
             intolerances.splice(index, 1);
         }
         else intolerances.push(this.value);
     })
 
-    $('#Meal').on('click', 'input', function(){
-        if(!this.checked){
-            const index = diets.indexOf(this.value);
-            meals.splice(index, 1);
+    $("input:checkbox").on('click', function() {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            if(this.name == "diet") diet = this.value;
+            if(this.name == "meal") meal = this.value;
+          var group = "input:checkbox[name='" + $box.attr("name") + "']";
+          $(group).prop("checked", false);
+          $box.prop("checked", true);
+        } else {
+          $box.prop("checked", false);
+          if(this.name == "diet") diet = "";
+          if(this.name == "meal") meal = "";
         }
-        else meals.push(this.value);
-    })
+      });
 })
 
-//Add random search when entering page
+//todo Add random search when entering page

@@ -201,16 +201,19 @@ p{
    margin-bottom: 0.5cm;
 
   }
+
   #Titel{
     font-family: 'Merienda';
     
   }
+
   .forstaDivForAllaRecept img{
     width: 304px;
     height: 228px;
     float: left;
 
   }
+  
   #showMore_btn{
     border:grey 2px solid;
     width: 8cm;
