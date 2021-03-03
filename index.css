@@ -182,9 +182,15 @@ p{
     padding-right: 0.5cm;
     margin-bottom: 50px;
     background-color: rgb(255, 255, 255);
-    width:80%;
+    width:50%;
 
   }
+  .theMain_forRecept2{
+    background-color: transparent;
+    width:100%;
+
+  }
+
 
   .forstaDivForAllaRecept{
    background-color: rgb(255, 255, 255);

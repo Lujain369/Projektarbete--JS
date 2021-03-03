@@ -1,7 +1,9 @@
-let url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba';
+const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba';
 let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
+let Main2=document.querySelector('.theMain_forRecept2');
+
 let intolerances = [];
     let diets = [];
     let meals = [];
@@ -20,6 +22,8 @@ function compileQuery(url, type, text){
     return `${url}&${type}=${text}`;
 }
 
+
+
 async function search(){
 
     let query = getQuery();
@@ -37,11 +41,26 @@ async function search(){
     catch{
         alert("something went wrong");
     }
-    
+
+ 
+
     if(response.ok){
             const jsonRespone = await response.json();
-            console.log(jsonRespone.results.length);
+            console.log(jsonRespone);
             Main.innerHTML = "";
+
+            function getAllID(){
+                if( jsonRespone.results.length > 0){
+                     for (let ID = 0; ID < jsonRespone.results.length; ID++) {
+                       let foodID = jsonRespone.results[ID]["id"];
+                       results[foodID] = {
+                       Id: jsonRespone.results[foodID].id
+                }
+                
+              }
+              }
+             }
+        
 
         if(jsonRespone.results.length > 0){
             for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
@@ -78,8 +97,58 @@ async function search(){
 }
 
 
-$(function(){
+function ShowIngredients(jsonRespone) {
+    let instructions = [];
+    let mainIngredientDiv= document.createElement("div");
+    let mainIngredientDiv2= document.createElement("div");
+    let ingredientsDiv = document.createElement("div");
+    let howToMake = document.createElement("div");
 
+    mainIngredientDiv.id = "mainIngredientDiv";
+    mainIngredientDiv2.id = "mainIngredientDiv2";
+    ingredientsDiv.id = "ingredients";
+    howToMake.id = "howToMake_Div";
+
+    let H2 = document.createElement("h2");
+    let H3 = document.createElement("h3");
+    H2.innerHTML = "How to make";
+    H3.innerHTML = "Ingredients";
+
+  Main2.appendChild(mainIngredientDiv);
+  mainIngredientDiv.appendChild( mainIngredientDiv2);
+  mainIngredientDiv2.appendChild(howToMake);
+  mainIngredientDiv2.appendChild(ingredientsDiv);
+  ingredientsDiv.appendChild(H3); 
+  howToMake.appendChild(H2); 
+
+  for (let index = 0; index < jsonRespone.length; index++) {
+    for (let i = 0; i <jsonRespone[index].steps.length; i++) {
+
+         for (let j = 0; j < jsonRespone[index].steps[i].ingredients.length; j++) {
+
+            let Ingredients = [];
+
+           Ingredients[j] = jsonRespone[index].steps[i].ingredients[j].name;
+           console.log(Ingredients[j]);
+           let ingredients = document.createElement("h5");
+           ingredients.innerHTML = Ingredients[j];
+            ingredientsDiv.appendChild(ingredients);
+         }
+
+         instructions[i] = {
+            Instruction: jsonRespone[index].steps[i].step,
+            Number: jsonRespone[index].steps[i].number,
+          };
+          console.log(instructions[i].Number + instructions[i].Instruction);
+    
+    }
+  }
+     
+ }
+ 
+
+
+$(function(){
 
     $('.items').click(function(){
         const value = $(this.parentElement.childNodes[1]).css("border-radius");
