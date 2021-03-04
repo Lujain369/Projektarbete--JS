@@ -15,7 +15,7 @@ button.onclick = function(){
 
 function getQuery(){
     if(inputValue.value.length > 0) return compileQuery(url, "query", inputValue.value);
-    else return url
+    else return url;
 }
 
 
@@ -27,7 +27,7 @@ function compileQuery(url, type, text){
 async function search(){
 
     let query = getQuery();
-    
+    let response;
     //Adds a csv to url
     if(intolerances.length > 0) query = compileQuery(query, "intolerances", intolerances.toString());
 
@@ -35,7 +35,6 @@ async function search(){
     
     if(meal != "") query = compileQuery(query, "type", meal);
 
-    let response;
     try{
         response = await fetch(query);
     }
@@ -87,6 +86,11 @@ function replaceWords(word){
     if(replacement.includes("With a spoonacular"))
     {
         let index = replacement.indexOf("With a spoonacular");
+        replacement = replacement.slice(0, index);
+    }
+
+    if(replacement.includes("Overall, this recipe")){
+        let index = replacement.indexOf("Overall, this recipe");
         replacement = replacement.slice(0, index);
     }
     return replacement;
@@ -219,4 +223,4 @@ $(function(){
       });
 })
 
-//todo Add random search when entering page
+search();
