@@ -176,48 +176,39 @@ p{
     flex-direction: column;
     margin:auto;
     margin-top: 50px;
-    padding-left: 0.5cm;
-    padding-top: 0.5cm;
-    padding-bottom: 0.5cm;
-    padding-right: 0.5cm;
+    padding:1rem;
     margin-bottom: 50px;
     background-color: rgb(255, 255, 255);
-    width:50%;
+    width:80%;
 
   }
   .theMain_forRecept2{
     background-color: transparent;
     width:100%;
-
   }
 
 
   .forstaDivForAllaRecept{
    background-color: rgb(255, 255, 255);
    width: 100%;
-   height: 300px;
    display: flex;  
    flex-direction: column;
    margin-bottom: 0.5cm;
 
   }
 
-  #Titel{
-    font-family: 'Merienda';
-    
+  .recipeImg{
+    max-width: 20%;
+    max-height: auto;
   }
 
-  .forstaDivForAllaRecept img{
-    width: 304px;
-    height: 228px;
-    float: left;
-
+  #Titel{
+    font-family: 'Merienda';
   }
   
   #showMore_btn{
     border:grey 2px solid;
     width: 8cm;
-    margin-left: 16cm;
     margin-bottom: 1cm;
     background-color: white;
   }

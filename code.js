@@ -1,8 +1,9 @@
-const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba';
+const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba&instructionsRequired=true&addRecipeInformation=true';
 let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
 let Main2=document.querySelector('.theMain_forRecept2');
+const splitter = "All things considered, we decided this recipe deserves a spoonacular score of 92%. This score is excellent. Try Pastan and Tuna Salad (Ensalada de Pasta y Atún), Tuna Pasta, and Tuna Pasta for similar recipes."
 
 let intolerances = [];
 let diet = "";
@@ -50,11 +51,8 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
-<<<<<<< HEAD
             console.log(jsonRespone);
-=======
             createCookie(query, jsonRespone);
->>>>>>> 8dcd65c697727a699455f6316700791848fbcfa7
             Main.innerHTML = "";
 
             function getAllID(){
@@ -85,11 +83,11 @@ async function search(){
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
       while (c.charAt(0) == ' ') {
         c = c.substring(1);
       }
@@ -105,31 +103,56 @@ function createCookie(url, list){
     console.log(document.cookie);
 }
 
+function replaceWords(word){
+    let replacement = word;
+    if(replacement.includes("<a")){
+        let index = replacement.indexOf("<a");
+        replacement = replacement.slice(0, index);
+    }
+    if(replacement.includes("To use up")){
+        let index = replacement.indexOf("To use up");
+        replacement = replacement.slice(0, index);
+    }
+    if(replacement.includes("All")){
+        let index = replacement.indexOf("All");
+        replacement = replacement.slice(0, index);
+    }
+    return replacement;
+}
 
 function addResults(jsonRespone){
     for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
 
+        let descriptionText = replaceWords(jsonRespone.results[foodObj].summary);
         let titel = jsonRespone.results[foodObj]["title"];
         let img=jsonRespone.results[foodObj]["image"];
   
        
         let forstaDivForAllaRecept = document.createElement("div");
-        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
+        forstaDivForAllaRecept.className = "row m-3";
   
         let receptTitel = document.createElement("h3");
+        receptTitel.className = "col-12 text-center"
         let receptImg= document.createElement("img");
+        receptImg.className = "col-lg-4 col-sm-12 recipeImg"
         let showMore= document.createElement("button");
+        showMore.className = "col-lg-12 m-auto"
+        let description = document.createElement("p");
+        description.className = "col-12"
         
-  
+        
+        description.innerHTML = descriptionText;
         receptTitel.id = "Titel";
         receptTitel.innerHTML = titel;
         receptImg.setAttribute("src", img);
         showMore.id="showMore_btn"
         showMore.innerHTML="Show ingredients for this recipe"
+
   
         Main.appendChild(forstaDivForAllaRecept);
         forstaDivForAllaRecept.appendChild(receptTitel);
         forstaDivForAllaRecept.appendChild(receptImg);
+        forstaDivForAllaRecept.appendChild(description);
         forstaDivForAllaRecept.appendChild(showMore);
   
        }
