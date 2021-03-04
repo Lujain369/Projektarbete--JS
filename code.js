@@ -105,7 +105,7 @@ function addResults(jsonRespone){
         let receptImg= document.createElement("img");
         receptImg.className = "col-lg-4 col-md-6 col-sm-12 m-auto recipeImg"
         let showMore= document.createElement("button");
-        showMore.className = "col-12 m-auto w-50"
+        showMore.className = "ingredients_btn"
         let description = document.createElement("p");
         description.className = "col-12";
         
@@ -155,7 +155,6 @@ function callIngredientApi(callURL){
     let ingredientsDiv = document.createElement("div");
     let howToMake = document.createElement("div");
 
-    
     mainIngredientDiv2.id = "mainIngredientDiv2";
     ingredientsDiv.id = "ingredients";
     howToMake.id = "howToMake_Div";
