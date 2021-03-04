@@ -1,8 +1,9 @@
-const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba';
+const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba&instructionsRequired=true&addRecipeInformation=true';
 let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
 let Main2=document.querySelector('.theMain_forRecept2');
+const splitter = "All things considered, we decided this recipe deserves a spoonacular score of 92%. This score is excellent. Try Pastan and Tuna Salad (Ensalada de Pasta y Atún), Tuna Pasta, and Tuna Pasta for similar recipes."
 
 let intolerances = [];
 let diet = "";
@@ -14,7 +15,7 @@ button.onclick = function(){
 
 function getQuery(){
     if(inputValue.value.length > 0) return compileQuery(url, "query", inputValue.value);
-    else return url
+    else return url;
 }
 
 
@@ -23,11 +24,10 @@ function compileQuery(url, type, text){
 }
 
 
-
 async function search(){
 
     let query = getQuery();
-    
+    let response;
     //Adds a csv to url
     if(intolerances.length > 0) query = compileQuery(query, "intolerances", intolerances.toString());
 
@@ -35,12 +35,8 @@ async function search(){
     
     if(meal != "") query = compileQuery(query, "type", meal);
 
-    let cookieResult = getCookie(query);
-
-    let response;
     try{
-        if(cookieResult == "")  response = await fetch(query);
-        else response = cookieResult;
+        response = await fetch(query);
     }
     catch{
         alert("something went wrong");
@@ -50,7 +46,10 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
+<<<<<<< HEAD
             createCookie(query, jsonRespone);
+=======
+>>>>>>> 298630c9a95e8588328fc19d6c611b178bc63b35
             Main.innerHTML = "";
 
         if(jsonRespone.results.length > 0){
@@ -60,57 +59,66 @@ async function search(){
                  alert("We couldn't find " + inputValue.value + " in our database");
              }
         }
-    else if(response != ""){
-        const jsonRespone = JSON.parse(response);
-        Main.innerHTML = "";
-        addResults(jsonRespone);
-    }
 }
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+function replaceWords(word){
+    let replacement = word;
+    
+    if(replacement.includes("To use up")){
+        let index = replacement.indexOf("To use up");
+        replacement = replacement.slice(0, index);
     }
-    return "";
-  }
+    
+    if(replacement.includes("All")){
+        let index = replacement.indexOf("All");
+        replacement = replacement.slice(0, index);
+    }
+    
+    if(replacement.includes("With a spoonacular"))
+    {
+        let index = replacement.indexOf("With a spoonacular");
+        replacement = replacement.slice(0, index);
+    }
 
-function createCookie(url, list){
-    document.cookie = `${url}=${JSON.stringify(list)}`;
-    console.log(document.cookie);
+    if(replacement.includes("Overall, this recipe")){
+        let index = replacement.indexOf("Overall, this recipe");
+        replacement = replacement.slice(0, index);
+    }
+    return replacement;
 }
-
 
 function addResults(jsonRespone){
     for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
 
+        let descriptionText = replaceWords(jsonRespone.results[foodObj].summary);
         let titel = jsonRespone.results[foodObj]["title"];
         let img=jsonRespone.results[foodObj]["image"];
         let id=jsonRespone.results[foodObj]["id"];
   
        
         let forstaDivForAllaRecept = document.createElement("div");
-        forstaDivForAllaRecept.className = "forstaDivForAllaRecept";
+        forstaDivForAllaRecept.className = "row m-3 recipe";
   
+        let descriptionAndButton = document.createElement("div");
+        descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3 flex-column"
         let receptTitel = document.createElement("h3");
+        receptTitel.className = "col-12 text-center"
         let receptImg= document.createElement("img");
+        receptImg.className = "col-lg-4 col-md-6 col-sm-12 m-auto recipeImg"
         let showMore= document.createElement("button");
+        showMore.className = "col-12 m-auto"
+        let description = document.createElement("p");
+        description.className = "col-12";
         
-  
+        
+        description.innerHTML = descriptionText;
         receptTitel.id = "Titel";
         receptTitel.innerHTML = titel;
         receptImg.setAttribute("src", img);
         showMore.id= id;
         showMore.innerHTML="Show ingredients for this recipe"
-  
+
+        descriptionAndButton.append(description, showMore);
         Main.appendChild(forstaDivForAllaRecept);
         forstaDivForAllaRecept.appendChild(receptTitel);
         forstaDivForAllaRecept.appendChild(receptImg);
@@ -162,12 +170,12 @@ function callIngredientApi(callURL){
     H2.innerHTML = "How to make";
     H3.innerHTML = "Ingredients";
 
-  Main2.appendChild(mainIngredientDiv);
-  mainIngredientDiv.appendChild( mainIngredientDiv2);
-  mainIngredientDiv2.appendChild(howToMake);
-  mainIngredientDiv2.appendChild(ingredientsDiv);
-  ingredientsDiv.appendChild(H3); 
-  howToMake.appendChild(H2); 
+    Main2.appendChild(mainIngredientDiv);
+    mainIngredientDiv.appendChild( mainIngredientDiv2);
+    mainIngredientDiv2.appendChild(howToMake);
+    mainIngredientDiv2.appendChild(ingredientsDiv);
+    ingredientsDiv.appendChild(H3); 
+    howToMake.appendChild(H2); 
 
   for (let index = 0; index < jsonRespone.length; index++) {
     for (let i = 0; i <jsonRespone[index].steps.length; i++) {
@@ -201,8 +209,11 @@ $(function(){
 
     $('.items').click(function(){
         const value = $(this.parentElement.childNodes[1]).css("border-radius");
-            if(value == "20px") $(this.parentElement.childNodes[1]).css("border-radius", "20px 20px 0px 0px");
-            else $(this.parentElement.childNodes[1]).css("border-radius", "20px");
+        
+        if(value == "20px") $(this.parentElement.childNodes[1]).css("border-radius", "20px 20px 0px 0px");
+        
+        else $(this.parentElement.childNodes[1]).css("border-radius", "20px");
+        
         $("ul", this.parentElement).slideToggle(100);
     })
 
@@ -215,14 +226,15 @@ $(function(){
     })
 
     $("input:checkbox").on('click', function() {
-        var $box = $(this);
+        let $box = $(this);
         if ($box.is(":checked")) {
             if(this.name == "diet") diet = this.value;
             if(this.name == "meal") meal = this.value;
-          var group = "input:checkbox[name='" + $box.attr("name") + "']";
-          $(group).prop("checked", false);
-          $box.prop("checked", true);
-        } else {
+            let group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } 
+        else {
           $box.prop("checked", false);
           if(this.name == "diet") diet = "";
           if(this.name == "meal") meal = "";
@@ -230,4 +242,4 @@ $(function(){
       });
 })
 
-//todo Add random search when entering page
+search();
