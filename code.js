@@ -24,7 +24,6 @@ function compileQuery(url, type, text){
 }
 
 
-
 async function search(){
 
     let query = getQuery();
@@ -36,12 +35,9 @@ async function search(){
     
     if(meal != "") query = compileQuery(query, "type", meal);
 
-    let cookieResult = getCookie(query);
-
     let response;
     try{
-        if(cookieResult == "")  response = await fetch(query);
-        else response = cookieResult;
+        response = await fetch(query);
     }
     catch{
         alert("something went wrong");
@@ -51,8 +47,6 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
-            console.log(jsonRespone);
-            createCookie(query, jsonRespone);
             Main.innerHTML = "";
 
             function getAllID(){
@@ -75,44 +69,21 @@ async function search(){
                  alert("We couldn't find " + inputValue.value + " in our database");
              }
         }
-    else if(response != ""){
-        const jsonRespone = JSON.parse(response);
-        Main.innerHTML = "";
-        addResults(jsonRespone);
-    }
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-function createCookie(url, list){
-    document.cookie = `${url}=${JSON.stringify(list)}`;
-    console.log(document.cookie);
 }
 
 function replaceWords(word){
     let replacement = word;
+    
     if(replacement.includes("To use up")){
         let index = replacement.indexOf("To use up");
         replacement = replacement.slice(0, index);
     }
+    
     if(replacement.includes("All")){
         let index = replacement.indexOf("All");
         replacement = replacement.slice(0, index);
     }
+    
     if(replacement.includes("With a spoonacular"))
     {
         let index = replacement.indexOf("With a spoonacular");
@@ -177,12 +148,12 @@ function ShowIngredients(jsonRespone) {
     H2.innerHTML = "How to make";
     H3.innerHTML = "Ingredients";
 
-  Main2.appendChild(mainIngredientDiv);
-  mainIngredientDiv.appendChild( mainIngredientDiv2);
-  mainIngredientDiv2.appendChild(howToMake);
-  mainIngredientDiv2.appendChild(ingredientsDiv);
-  ingredientsDiv.appendChild(H3); 
-  howToMake.appendChild(H2); 
+    Main2.appendChild(mainIngredientDiv);
+    mainIngredientDiv.appendChild( mainIngredientDiv2);
+    mainIngredientDiv2.appendChild(howToMake);
+    mainIngredientDiv2.appendChild(ingredientsDiv);
+    ingredientsDiv.appendChild(H3); 
+    howToMake.appendChild(H2); 
 
   for (let index = 0; index < jsonRespone.length; index++) {
     for (let i = 0; i <jsonRespone[index].steps.length; i++) {
@@ -215,8 +186,11 @@ $(function(){
 
     $('.items').click(function(){
         const value = $(this.parentElement.childNodes[1]).css("border-radius");
-            if(value == "20px") $(this.parentElement.childNodes[1]).css("border-radius", "20px 20px 0px 0px");
-            else $(this.parentElement.childNodes[1]).css("border-radius", "20px");
+        
+        if(value == "20px") $(this.parentElement.childNodes[1]).css("border-radius", "20px 20px 0px 0px");
+        
+        else $(this.parentElement.childNodes[1]).css("border-radius", "20px");
+        
         $("ul", this.parentElement).slideToggle(100);
     })
 
@@ -229,14 +203,15 @@ $(function(){
     })
 
     $("input:checkbox").on('click', function() {
-        var $box = $(this);
+        let $box = $(this);
         if ($box.is(":checked")) {
             if(this.name == "diet") diet = this.value;
             if(this.name == "meal") meal = this.value;
-          var group = "input:checkbox[name='" + $box.attr("name") + "']";
-          $(group).prop("checked", false);
-          $box.prop("checked", true);
-        } else {
+            let group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } 
+        else {
           $box.prop("checked", false);
           if(this.name == "diet") diet = "";
           if(this.name == "meal") meal = "";
