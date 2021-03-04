@@ -129,14 +129,16 @@ function addResults(jsonRespone){
   
        
         let forstaDivForAllaRecept = document.createElement("div");
-        forstaDivForAllaRecept.className = "row m-3";
+        forstaDivForAllaRecept.className = "row m-3 recipe";
   
+        let descriptionAndButton = document.createElement("div");
+        descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3"
         let receptTitel = document.createElement("h3");
         receptTitel.className = "col-12 text-center"
         let receptImg= document.createElement("img");
-        receptImg.className = "col-lg-4 col-sm-12 recipeImg"
+        receptImg.className = "col-lg-4 col-md-6 col-sm-12 m-auto recipeImg"
         let showMore= document.createElement("button");
-        showMore.className = "col-lg-12 m-auto"
+        showMore.className = "col-12 m-auto"
         let description = document.createElement("p");
         description.className = "col-12"
         
@@ -148,12 +150,10 @@ function addResults(jsonRespone){
         showMore.id="showMore_btn"
         showMore.innerHTML="Show ingredients for this recipe"
 
-  
+        descriptionAndButton.append(description, showMore);
         Main.appendChild(forstaDivForAllaRecept);
-        forstaDivForAllaRecept.appendChild(receptTitel);
-        forstaDivForAllaRecept.appendChild(receptImg);
-        forstaDivForAllaRecept.appendChild(description);
-        forstaDivForAllaRecept.appendChild(showMore);
+        forstaDivForAllaRecept.append(receptTitel, receptImg, descriptionAndButton);
+        
   
        }
 }

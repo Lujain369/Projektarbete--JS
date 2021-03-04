@@ -116,13 +116,21 @@ p{
     font-family: Merienda;
     margin:0;
     padding:0.5rem 0;
+    margin-top: 1rem;
     background-color: rgb(255, 255, 255);
     color: black;
     box-shadow: 0 0 0.3em #444;
   }
 
+  .flexDirection{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
   .filterList{
     padding: 0 !important;
+    width: initial;
   }
 
   ul{
@@ -142,7 +150,7 @@ p{
   .filterList li{
     padding: .5em;
     margin:0 !important;
-    display: block;
+    display: inline-block;
   }
 
     /*Pre renders hover shadow to increase performance*/
@@ -188,18 +196,14 @@ p{
   }
 
 
-  .forstaDivForAllaRecept{
-   background-color: rgb(255, 255, 255);
-   width: 100%;
-   display: flex;  
-   flex-direction: column;
-   margin-bottom: 0.5cm;
-
+  .recipe{  
+    border-bottom:1px solid black;
   }
 
   .recipeImg{
     max-width: 20%;
     max-height: auto;
+    border-radius: 5%;
   }
 
   #Titel{
@@ -265,15 +269,16 @@ p{
 
   /*--------------------------------------------------------*/
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 768px) {
       footer{
         flex-direction: row;
       }
       .filterList li input{
         display: inline-block;
       }
-
-      .filterList li{
-        display: inline-block;
+      .flexDirection{
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
       }
     }
