@@ -50,25 +50,8 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
-<<<<<<< HEAD
-            console.log(jsonRespone);
-=======
             createCookie(query, jsonRespone);
->>>>>>> 8dcd65c697727a699455f6316700791848fbcfa7
             Main.innerHTML = "";
-
-            function getAllID(){
-                if( jsonRespone.results.length > 0){
-                     for (let ID = 0; ID < jsonRespone.results.length; ID++) {
-                       let foodID = jsonRespone.results[ID]["id"];
-                       results[foodID] = {
-                       Id: jsonRespone.results[foodID].id
-                }
-                
-              }
-              }
-             }
-        
 
         if(jsonRespone.results.length > 0){
             addResults(jsonRespone);
@@ -111,6 +94,7 @@ function addResults(jsonRespone){
 
         let titel = jsonRespone.results[foodObj]["title"];
         let img=jsonRespone.results[foodObj]["image"];
+        let id=jsonRespone.results[foodObj]["id"];
   
        
         let forstaDivForAllaRecept = document.createElement("div");
@@ -124,19 +108,44 @@ function addResults(jsonRespone){
         receptTitel.id = "Titel";
         receptTitel.innerHTML = titel;
         receptImg.setAttribute("src", img);
-        showMore.id="showMore_btn"
+        showMore.id= id;
         showMore.innerHTML="Show ingredients for this recipe"
   
         Main.appendChild(forstaDivForAllaRecept);
         forstaDivForAllaRecept.appendChild(receptTitel);
         forstaDivForAllaRecept.appendChild(receptImg);
         forstaDivForAllaRecept.appendChild(showMore);
-  
+
+        getApiForIngredients(id)
+   
        }
+
+};
+
+ function getApiForIngredients(id){
+   let getrecipeById= document.getElementById(id);
+   getrecipeById.addEventListener("click", function () {
+
+    let callURL = id + "/analyzedInstructions?stepBreakdown=true";
+   
+    callIngredientApi(callURL);
+
+     }
+   )
+};
+  
+function callIngredientApi(callURL){
+  fetch("https://api.spoonacular.com/recipes/"+callURL+"&apiKey=7b8b12f410324e6fb252b8854b17ab36")
+     .then(jsonRespone=>jsonRespone.json())
+     .then((data)=>{
+       console.log(data);
+       ShowIngredients(data)
+     });
+     
+
 }
 
-
-function ShowIngredients(jsonRespone) {
+ function ShowIngredients(jsonRespone) {
     let instructions = [];
     let mainIngredientDiv= document.createElement("div");
     let mainIngredientDiv2= document.createElement("div");
@@ -184,6 +193,7 @@ function ShowIngredients(jsonRespone) {
   }
      
  }
+ 
  
 
 
