@@ -211,7 +211,7 @@ p{
     border-radius: 5%;
   }
 
-  #Titel{
+  #Title{
     font-family: 'Merienda';
   }
   
@@ -274,12 +274,13 @@ p{
     flex-direction: row;
     flex-wrap: wrap;
   }
-#howToMake_Div{
+
+  #howToMake_Div{
   flex: 80%;
-}
-#ingredients{
+   }
+  #ingredients{
   flex:20%;
-}
+  }
   /*  /Footer */
 
 

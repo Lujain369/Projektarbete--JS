@@ -89,19 +89,19 @@ function addResults(jsonRespone){
     for (let foodObj = 0; foodObj < jsonRespone.results.length; foodObj++) {
 
         let descriptionText = replaceWords(jsonRespone.results[foodObj].summary);
-        let titel = jsonRespone.results[foodObj]["title"];
+        let title = jsonRespone.results[foodObj]["title"];
         let img=jsonRespone.results[foodObj]["image"];
         let id=jsonRespone.results[foodObj]["id"];
   
        
-        let forstaDivForAllaRecept = document.createElement("div");
-        forstaDivForAllaRecept.className = "row m-3 recipe";
-        forstaDivForAllaRecept.id="recipes"
+        let firstDivForAllRecipe = document.createElement("div");
+        firstDivForAllRecipe.className = "row m-3 recipe";
+        firstDivForAllRecipe.id="recipes"
   
         let descriptionAndButton = document.createElement("div");
         descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3 flex-column"
-        let receptTitel = document.createElement("h3");
-        receptTitel.className = "col-12 text-center"
+        let receptTitle = document.createElement("h3");
+        receptTitle.className = "col-12 text-center"
         let receptImg= document.createElement("img");
         receptImg.className = "col-lg-4 col-md-6 col-sm-12 m-auto recipeImg"
         let showMore= document.createElement("button");
@@ -111,15 +111,15 @@ function addResults(jsonRespone){
         
         
         description.innerHTML = descriptionText;
-        receptTitel.id = "Titel";
-        receptTitel.innerHTML = titel;
+        receptTitle.id = "Title";
+        receptTitle.innerHTML = title;
         receptImg.setAttribute("src", img);
         showMore.id= id;
         showMore.innerHTML="Show ingredients for this recipe"
 
         descriptionAndButton.append(description, showMore);
-        Main.appendChild(forstaDivForAllaRecept);
-        forstaDivForAllaRecept.append(receptTitel, receptImg, descriptionAndButton);
+        Main.appendChild(firstDivForAllRecipe);
+        firstDivForAllRecipe.append(receptTitle, receptImg, descriptionAndButton);
 
         getApiForIngredients(id)
    
@@ -145,8 +145,6 @@ function callIngredientApi(callURL){
      .then((data)=>{
        ShowIngredients(data)
      });
-     
-
 }
 
  function ShowIngredients(jsonRespone) {
@@ -219,7 +217,6 @@ function callIngredientApi(callURL){
  function remove(){
    let removeDiv= document.querySelectorAll("#recipes");
    for(let index=0;index<removeDiv.length;index++){
-
      removeDiv[index].remove();
    }
 
@@ -237,26 +234,6 @@ function callIngredientApi(callURL){
      removeDiv5[index].remove();
    }
  }
-
-
- function removeElement() {
-  // tar bort element när man kallar på funktionen
-  let removeRecipeDiv = document.querySelectorAll("#recipediv");
-  for (let index = 0; index < removeRecipeDiv.length; index++) {
-    removeRecipeDiv[index].remove();
-  }
-  let removeIngredientsDiv = document.querySelectorAll("#ingredients");
-  for (let index = 0; index < removeIngredientsDiv.length; index++) {
-    removeIngredientsDiv[index].remove();
-  }
-  let removeheader = document.querySelectorAll("h3");
-
-  for (let index = 0; index < removeheader.length; index++) {
-    removeheader[index].remove();
-  }
-}
- 
- 
 
 
 $(function(){
