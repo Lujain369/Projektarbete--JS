@@ -105,16 +105,17 @@ function createCookie(url, list){
 
 function replaceWords(word){
     let replacement = word;
-    if(replacement.includes("<a")){
-        let index = replacement.indexOf("<a");
-        replacement = replacement.slice(0, index);
-    }
     if(replacement.includes("To use up")){
         let index = replacement.indexOf("To use up");
         replacement = replacement.slice(0, index);
     }
     if(replacement.includes("All")){
         let index = replacement.indexOf("All");
+        replacement = replacement.slice(0, index);
+    }
+    if(replacement.includes("With a spoonacular"))
+    {
+        let index = replacement.indexOf("With a spoonacular");
         replacement = replacement.slice(0, index);
     }
     return replacement;
@@ -132,7 +133,7 @@ function addResults(jsonRespone){
         forstaDivForAllaRecept.className = "row m-3 recipe";
   
         let descriptionAndButton = document.createElement("div");
-        descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3"
+        descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3 flex-column"
         let receptTitel = document.createElement("h3");
         receptTitel.className = "col-12 text-center"
         let receptImg= document.createElement("img");
@@ -140,7 +141,7 @@ function addResults(jsonRespone){
         let showMore= document.createElement("button");
         showMore.className = "col-12 m-auto"
         let description = document.createElement("p");
-        description.className = "col-12"
+        description.className = "col-12";
         
         
         description.innerHTML = descriptionText;

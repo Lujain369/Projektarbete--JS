@@ -133,6 +133,10 @@ p{
     width: initial;
   }
 
+  .descriptionWidth{
+    max-width: 60ch !important;
+  }
+
   ul{
     padding: 0 !important;
     text-align: center;
