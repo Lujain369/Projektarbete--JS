@@ -3,7 +3,6 @@ let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
 let Main2=document.querySelector('.theMain_forRecept2');
-const splitter = "All things considered, we decided this recipe deserves a spoonacular score of 92%. This score is excellent. Try Pastan and Tuna Salad (Ensalada de Pasta y Atún), Tuna Pasta, and Tuna Pasta for similar recipes."
 
 let intolerances = [];
 let diet = "";
@@ -103,7 +102,7 @@ function addResults(jsonRespone){
         let receptImg= document.createElement("img");
         receptImg.className = "col-lg-4 col-md-6 col-sm-12 m-auto recipeImg"
         let showMore= document.createElement("button");
-        showMore.className = "col-12 m-auto"
+        showMore.className = "col-12 m-auto w-50"
         let description = document.createElement("p");
         description.className = "col-12";
         
@@ -117,9 +116,7 @@ function addResults(jsonRespone){
 
         descriptionAndButton.append(description, showMore);
         Main.appendChild(forstaDivForAllaRecept);
-        forstaDivForAllaRecept.appendChild(receptTitel);
-        forstaDivForAllaRecept.appendChild(receptImg);
-        forstaDivForAllaRecept.appendChild(showMore);
+        forstaDivForAllaRecept.append(receptTitel, receptImg, descriptionAndButton);
 
         getApiForIngredients(id)
    
@@ -143,7 +140,6 @@ function callIngredientApi(callURL){
   fetch("https://api.spoonacular.com/recipes/"+callURL+"&apiKey=7b8b12f410324e6fb252b8854b17ab36")
      .then(jsonRespone=>jsonRespone.json())
      .then((data)=>{
-       console.log(data);
        ShowIngredients(data)
      });
      
