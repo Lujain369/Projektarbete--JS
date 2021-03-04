@@ -38,7 +38,7 @@ async function search(){
         response = await fetch(query);
     }
     catch{
-        alert("something went wrong");
+        alert("Server is down");
     }
 
  
@@ -53,6 +53,9 @@ async function search(){
              else{
                  alert("We couldn't find " + inputValue.value + " in our database");
              }
+        }
+    else if (response.status == 402){
+        alert("Out of requests");
         }
 }
 
