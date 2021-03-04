@@ -1,4 +1,4 @@
-const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cdd151db1b734bc2bb7f450c90fc89ba&instructionsRequired=true&addRecipeInformation=true';
+const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=7b8b12f410324e6fb252b8854b17ab36&instructionsRequired=true&addRecipeInformation=true';
 let button= document.querySelector('#button')
 let inputValue= document.querySelector('#inputValue');
 let Main=document.querySelector('.theMain_forRecept');
@@ -46,10 +46,6 @@ async function search(){
 
     if(response.ok){
             const jsonRespone = await response.json();
-<<<<<<< HEAD
-            createCookie(query, jsonRespone);
-=======
->>>>>>> 298630c9a95e8588328fc19d6c611b178bc63b35
             Main.innerHTML = "";
 
         if(jsonRespone.results.length > 0){
@@ -98,6 +94,7 @@ function addResults(jsonRespone){
        
         let forstaDivForAllaRecept = document.createElement("div");
         forstaDivForAllaRecept.className = "row m-3 recipe";
+        forstaDivForAllaRecept.id="recipes"
   
         let descriptionAndButton = document.createElement("div");
         descriptionAndButton.className = "col-lg-8 col-md-12 col-sm-12 row p-3 flex-column"
@@ -154,13 +151,14 @@ function callIngredientApi(callURL){
 }
 
  function ShowIngredients(jsonRespone) {
+   remove();
     let instructions = [];
-    let mainIngredientDiv= document.createElement("div");
+    
     let mainIngredientDiv2= document.createElement("div");
     let ingredientsDiv = document.createElement("div");
     let howToMake = document.createElement("div");
 
-    mainIngredientDiv.id = "mainIngredientDiv";
+    
     mainIngredientDiv2.id = "mainIngredientDiv2";
     ingredientsDiv.id = "ingredients";
     howToMake.id = "howToMake_Div";
@@ -170,12 +168,13 @@ function callIngredientApi(callURL){
     H2.innerHTML = "How to make";
     H3.innerHTML = "Ingredients";
 
-    Main2.appendChild(mainIngredientDiv);
-    mainIngredientDiv.appendChild( mainIngredientDiv2);
-    mainIngredientDiv2.appendChild(howToMake);
     mainIngredientDiv2.appendChild(ingredientsDiv);
+    mainIngredientDiv2.appendChild(howToMake);
+    
     ingredientsDiv.appendChild(H3); 
     howToMake.appendChild(H2); 
+    Main.appendChild(mainIngredientDiv2);
+    
 
   for (let index = 0; index < jsonRespone.length; index++) {
     for (let i = 0; i <jsonRespone[index].steps.length; i++) {
@@ -196,11 +195,67 @@ function callIngredientApi(callURL){
             Number: jsonRespone[index].steps[i].number,
           };
           console.log(instructions[i].Number + instructions[i].Instruction);
+          let recipeDiv = document.createElement("div");
+
+      let instructionNumber = document.createElement("h5");
+
+      let instructionStep = document.createElement("p");
+      let mainIngredientDiv2 = document.querySelector("#howToMake_Div")
+
+      recipeDiv.id = "recipediv";
+      instructionNumber.innerHTML = instructions[i].Number;
+      instructionNumber.style = "margin-right : 15px;";
+
+      instructionStep.innerHTML = instructions[i].Instruction;
+
+      recipeDiv.appendChild(instructionNumber);
+      recipeDiv.appendChild(instructionStep);
+
+      mainIngredientDiv2.appendChild(recipeDiv);
     
     }
   }
      
  }
+ function remove(){
+   let removeDiv= document.querySelectorAll("#recipes");
+   for(let index=0;index<removeDiv.length;index++){
+
+     removeDiv[index].remove();
+   }
+
+   let removeDiv3 = document.querySelectorAll("#mainIngredientDiv2");
+   for (let index = 0; index < removeDiv3.length; index++) {
+     removeDiv3[index].remove();
+   }
+
+   let removeDiv4 = document.querySelectorAll("#ingredients")
+   for (let index = 0; index < removeDiv4.length; index++) {
+     removeDiv4[index].remove();
+   }
+   let removeDiv5 = document.querySelectorAll("#howToMake_Div")
+   for (let index = 0; index < removeDiv5.length; index++) {
+     removeDiv5[index].remove();
+   }
+ }
+
+
+ function removeElement() {
+  // tar bort element när man kallar på funktionen
+  let removeRecipeDiv = document.querySelectorAll("#recipediv");
+  for (let index = 0; index < removeRecipeDiv.length; index++) {
+    removeRecipeDiv[index].remove();
+  }
+  let removeIngredientsDiv = document.querySelectorAll("#ingredients");
+  for (let index = 0; index < removeIngredientsDiv.length; index++) {
+    removeIngredientsDiv[index].remove();
+  }
+  let removeheader = document.querySelectorAll("h3");
+
+  for (let index = 0; index < removeheader.length; index++) {
+    removeheader[index].remove();
+  }
+}
  
  
 

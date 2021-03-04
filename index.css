@@ -269,6 +269,17 @@ p{
   max-width: 35ch;
   }
 
+  #mainIngredientDiv2{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+#howToMake_Div{
+  flex: 80%;
+}
+#ingredients{
+  flex:20%;
+}
   /*  /Footer */
 
 
