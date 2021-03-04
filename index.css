@@ -168,6 +168,7 @@ p{
   }
 
   .items:hover::after{
+    cursor: pointer;
     opacity: 1;
   }
 
